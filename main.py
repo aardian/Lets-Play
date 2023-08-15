@@ -22,5 +22,5 @@ while True:
         game = Wordle()
         game.play()
     elif value == "q":
-            print("Hope to play next time!")
+            print("Hope to play next time!!")
             break
