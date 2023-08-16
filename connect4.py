@@ -77,8 +77,8 @@ class ConnectFour:
             col = None
             while col is None or col not in range(self.width):
                 col = IntPrompt.ask(f"Team {colors[team]}{team}[/] choose column") - 1
-                if col < 1 or col > 8:
-                    print("Column must be between 1 and 8.")
+                if col != range(self.width):
+                    print("Column must be between 1 and 7.")
             ok = self.insert_token(team, col)
             while not ok:
                 print('column is full!')
@@ -86,7 +86,7 @@ class ConnectFour:
                 while col is None or col not in range(self.width):
                     col = IntPrompt.ask(f"Team {colors[team]}{team}[/] choose column") - 1
                     if col != range(self.width):
-                        print("Colummn must be between 1 and 8.")
+                        print("Colummn must be between 1 and 7.")
                 ok = self.insert_token(team, col)
 
             if self.check_win():
