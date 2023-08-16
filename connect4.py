@@ -74,12 +74,19 @@ class ConnectFour:
         colors = {'0': '[blue]', '1': '[red]'}
         while True:
             self.draw_board()
-
-            col = IntPrompt.ask(f"Team {colors[team]}{team}[/] choose column") - 1
+            col = None
+            while col is None or col not in range(self.width):
+                col = IntPrompt.ask(f"Team {colors[team]}{team}[/] choose column") - 1
+                if col < 1 or col > 8:
+                    print("Column must be between 1 and 8.")
             ok = self.insert_token(team, col)
             while not ok:
                 print('column is full!')
-                col = IntPrompt.ask(f"Team {colors[team]}{team}[/] choose column") - 1
+                col = None
+                while col is None or col not in range(self.width):
+                    col = IntPrompt.ask(f"Team {colors[team]}{team}[/] choose column") - 1
+                    if col != range(self.width):
+                        print("Colummn must be between 1 and 8.")
                 ok = self.insert_token(team, col)
 
             if self.check_win():
